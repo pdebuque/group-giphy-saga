@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function SearchView() {
 	const dispatch = useDispatch();
 	const [viewSearch, setSearch] = useState('');
+
+	const gifResult = useSelector(store => store.searchResult);
 
 	const handleChange = e => {
 		e.preventDefault();
@@ -14,7 +16,8 @@ export default function SearchView() {
 	const fetchNewGif = () => {
 		console.log('Clicked on Search button in Search.jsx');
 		dispatch({
-			type: '',
+			type: 'MAKE_SEARCH',
+			payload: viewSearch,
 		});
 	};
 
@@ -26,11 +29,18 @@ export default function SearchView() {
 				value={viewSearch}
 				placeholder='Search'
 				required
-				onChange={handleChange}>
-				{' '}
-			</input>
+				onChange={handleChange}></input>
 
 			<button onClick={fetchNewGif}>Search</button>
+
+			<div>
+				<h3> Results</h3>
+				<ul key={image.id}>
+					{gifResult.map(image => {
+						<img scr={image} />;
+					})}
+				</ul>
+			</div>
 		</div>
 	);
 }
