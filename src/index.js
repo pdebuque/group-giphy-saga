@@ -23,8 +23,12 @@ function* rootSaga() {
 }
 
 function* fetchFavorites(action) {
-    const favorites = yield axios.get('/favorite');
-    yield put({ type: 'SET_FAVORITES', payload: favorites.data })
+    try {
+        const favorites = yield axios.get('/favorite');
+        yield put({ type: 'SET_FAVORITES', payload: favorites.data })
+    } catch (err) {
+        console.log('could not fetch favorites', err)
+    }
 }
 
 const sagaMiddleware = createSagaMiddleware();
