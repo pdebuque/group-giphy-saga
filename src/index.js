@@ -32,12 +32,13 @@ function* fetchFavorites(action) {
 }
 
 const sagaMiddleware = createSagaMiddleware();
-sagaMiddleware.run(rootSaga);
+
 
 const store = createStore(combineReducers({
     favoritesList
 }), applyMiddleware(logger, sagaMiddleware));
 
+sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
     <Provider store={store}>
