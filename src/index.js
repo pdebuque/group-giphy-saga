@@ -26,6 +26,7 @@ function* rootSaga() {
 	yield takeEvery('FETCH_FAVORITES', fetchFavorites);
 }
 
+// GET request: get all favorite gifs from the database
 function* fetchFavorites(action) {
 	try {
 		const favorites = yield axios.get('/favorite');
