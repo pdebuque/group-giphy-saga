@@ -17,23 +17,43 @@ const favoritesList = (state = [], action) => {
 	return state;
 };
 
-const searchResult = (state = [], action) => {
-	if (action.type === 'MAKE_SEARCH') return action.payload;
+// const searchTerm = (state = '', action) => {
+// 	console.log('result: ', state);
+// 	if (action.type === 'SET_SEARCH_TERM') return action.payload;
+// 	return state;
+// };
+
+const searchResults = (state = [], action) => {
+	if (action.type === 'SET_SEARCH_RESULTS') {
+		console.log('setting search results: ', action.payload);
+		return action.payload;
+	}
 	return state;
 };
 
 function* rootSaga() {
 	yield takeEvery('FETCH_FAVORITES', fetchFavorites);
+	yield takeEvery('MAKE_SEARCH', makeSearch);
 }
 
 // GET request: get all favorite gifs from the database
 function* fetchFavorites(action) {
     console.log('in fetchFavorite');
 	try {
-		const favorites = yield axios.get('/api/favorites');
+		const favorites = yield axios.get('/api/favorite');
 		yield put({ type: 'SET_FAVORITES', payload: favorites.data });
 	} catch (err) {
 		console.log('could not fetch favorites', err);
+	}
+}
+
+function* makeSearch(action) {
+	try {
+		console.log('making search with keyword ', action.payload);
+		const searchResults = yield axios.get(`/api/search/${action.payload}`);
+		yield put({ type: 'SET_SEARCH_RESULTS', payload: searchResults.data });
+	} catch (err) {
+		console.log('could not search', err);
 	}
 }
 
@@ -42,7 +62,7 @@ const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
 	combineReducers({
 		favoritesList,
-		searchResult,
+		searchResults,
 	}),
 	applyMiddleware(logger, sagaMiddleware)
 );
