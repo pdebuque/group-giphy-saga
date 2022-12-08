@@ -18,6 +18,7 @@ const favoritesList = (state = [], action) => {
 };
 
 const searchResult = (state = [], action) => {
+	console.log('result: ', state);
 	if (action.type === 'MAKE_SEARCH') return action.payload;
 	return state;
 };

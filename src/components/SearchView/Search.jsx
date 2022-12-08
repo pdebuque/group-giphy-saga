@@ -35,11 +35,11 @@ export default function SearchView() {
 
 			<div>
 				<h3> Results</h3>
-				<ul key={image.id}>
+				{/* <div key={image.id}>
 					{gifResult.map(image => {
-						<img scr={image} />;
+						<img scr={image.data} />;
 					})}
-				</ul>
+				</div> */}
 			</div>
 		</div>
 	);
