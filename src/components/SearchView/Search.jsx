@@ -7,6 +7,8 @@ export default function SearchView() {
 
 	const searchResults = useSelector(store => store.searchResults);
 
+	console.log('Testing Testing');
+
 	const handleChange = e => {
 		e.preventDefault();
 		console.log('In search input field');
