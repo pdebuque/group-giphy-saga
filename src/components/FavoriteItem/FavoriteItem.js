@@ -5,21 +5,23 @@ import React from "react";
 
 function FavoriteItem (props){
 
+    const favorite = props.favorite;
+
+
+    const removeFavorite = () => {
+        console.log('in removeFavorite', favorite.id)
+        dispatch({
+            type: 'DELETE_FAVORITE', payload: favorite.id
+        });
+    }
+
+
     return (
         <div>
-            {/* <p>{props}</p> */}
-
-
+            <p>{favorite}</p>
+            <button key={plant.id} onClick={removeFavorite}>Remove</button>
         </div>
-
-
-
     )
-
-
-
-
-
 }
 
 

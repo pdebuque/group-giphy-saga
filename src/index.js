@@ -19,7 +19,7 @@ const favoritesList = (state = [], action) => {
 
 function* rootSaga() {
     yield takeEvery('FETCH_FAVORITES', fetchFavorites)
-
+    //! added a ('DELETE_FAVORITE') in FavoriteItem.js
 }
 
 function* fetchFavorites(action) {
