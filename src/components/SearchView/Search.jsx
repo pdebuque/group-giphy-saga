@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 export default function SearchView() {
 	const dispatch = useDispatch();
-	const [viewSearch, setSearch] = useState('');
+	const [searchTerm, setSearch] = useState('');
 
-	const gifResult = useSelector(store => store.searchResult);
+	const searchResults = useSelector(store => store.searchResults);
 
 	const handleChange = e => {
 		e.preventDefault();
@@ -13,11 +13,11 @@ export default function SearchView() {
 		setSearch(e.target.value);
 	};
 
-	const fetchNewGif = () => {
+	const handleSubmit = () => {
 		console.log('Clicked on Search button in Search.jsx');
 		dispatch({
 			type: 'MAKE_SEARCH',
-			payload: viewSearch,
+			payload: searchTerm,
 		});
 	};
 
@@ -26,20 +26,20 @@ export default function SearchView() {
 			<input
 				type='text'
 				name='name'
-				value={viewSearch}
+				value={searchTerm}
 				placeholder='Search'
 				required
 				onChange={handleChange}></input>
 
-			<button onClick={fetchNewGif}>Search</button>
+			<button onClick={handleSubmit}>Search</button>
 
 			<div>
 				<h3> Results</h3>
-				{/* <div key={image.id}>
-					{gifResult.map(image => {
-						<img scr={image.data} />;
+				<div>
+					{searchResults.map(image => {
+						<img key={image.id} src={image.data} />;
 					})}
-				</div> */}
+				</div>
 			</div>
 		</div>
 	);
