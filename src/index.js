@@ -22,6 +22,7 @@ function* rootSaga() {
 
 }
 
+// GET request: get all favorite gifs from the database
 function* fetchFavorites(action) {
     try {
         const favorites = yield axios.get('/favorite');
@@ -32,12 +33,12 @@ function* fetchFavorites(action) {
 }
 
 const sagaMiddleware = createSagaMiddleware();
-sagaMiddleware.run(rootSaga);
 
 const store = createStore(combineReducers({
     favoritesList
 }), applyMiddleware(logger, sagaMiddleware));
 
+sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
     <Provider store={store}>
