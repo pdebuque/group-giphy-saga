@@ -29,13 +29,15 @@ function FavoriteList () {
     return (
         <div>
             <h3>This is the favorite list for giphys!</h3>
+            <>
             <ul className="favoriteUL">
                 {favorites.map(favorite => (
                 <li>
                     <FavoriteItem key={favorite.id} favorite={favorite}/>
                 </li>
                 ))}
-            </ul>         
+            </ul>   
+            </>      
         </div>
 
 

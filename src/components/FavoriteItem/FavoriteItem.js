@@ -19,7 +19,7 @@ function FavoriteItem (props){
     return (
         <div>
             <p>{favorite}</p>
-            <button key={plant.id} onClick={removeFavorite}>Remove</button>
+            <button key={favorite.id} onClick={removeFavorite}>Remove</button>
         </div>
     )
 }
