@@ -1,0 +1,12 @@
+import 
+
+
+
+
+
+export default SearchView() {
+
+
+
+
+}
