@@ -1,0 +1,37 @@
+.flex-container{
+display: flex;
+flex-wrap: wrap;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+}
+
+.gif-container{
+margin: 10px;
+padding:10px;
+}
+
+.favorite-btn{
+width: 120px;
+height: 30px;
+font-size: 12pt;
+border-radius: 30pt;
+cursor: pointer;
+
+}
+
+.favorite-btn:hover {
+	width: 120px;
+	height: 30px;
+	font-size: 12pt;
+	border-radius: 30pt;
+	cursor: pointer;
+	background-color: orange;
+	transition: 0.2s;
+}
+
+img{
+width: 300px;
+height:300px;
+object-fit: fill;
+}

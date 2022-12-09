@@ -4,15 +4,20 @@ const axios = require('axios');
 
 router.get('/:keyword', (req, res) => {
 	const searchTerm = req.params.keyword;
-	console.log('received search request with keyword', req.params.keyword, 'and key', process.env.GIPHY_API_KEY);
+	console.log(
+		'received search request with keyword',
+		req.params.keyword,
+		'and key',
+		process.env.GIPHY_API_KEY
+	);
 
 	axios
 		.get(
-			`http://api.giphy.com/v1/gifs/search?api_key=${process.env.GIPHY_API_KEY}&q=${searchTerm}&limit=5`
+			`http://api.giphy.com/v1/gifs/search?api_key=${process.env.GIPHY_API_KEY}&q=${searchTerm}&limit=8`
 		)
 		.then(response => {
 			res.send(response.data);
-            console.log(response.data);
+			console.log(response.data);
 		})
 		.catch(error => {
 			res.sendStatus(500);

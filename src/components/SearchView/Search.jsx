@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import '../SearchView/Search.css';
 
 export default function SearchView() {
 	const dispatch = useDispatch();
 	const [searchTerm, setSearch] = useState('');
 
 	const searchResults = useSelector(store => store.searchResults);
-	console.log('searchResult: ', searchResults);
 
 	const handleChange = e => {
 		e.preventDefault();
-		console.log('In search input field');
+		// console.log('In search input field');
 		setSearch(e.target.value);
+		// console.log('searchResult: ', searchResults);
 	};
 
 	const handleSubmit = () => {
@@ -35,12 +37,14 @@ export default function SearchView() {
 
 			<div>
 				<h3> Results</h3>
-				<div>
+				<div className='flex-container'>
 					{searchResults.map(image => {
 						return (
-							<div key={image.id}>
+							<div key={image.id} className='gif-container'>
 								<img src={image.images.downsized_large.url} />
-								<button>Favorite</button>
+								<div>
+									<button className='favorite-btn'>Favorite</button>
+								</div>
 							</div>
 						);
 					})}
