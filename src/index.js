@@ -25,8 +25,8 @@ const favoritesList = (state = [], action) => {
 
 const searchResults = (state = [], action) => {
 	if (action.type === 'SET_SEARCH_RESULTS') {
-		console.log('setting search results: ', action.payload);
-		return action.payload;
+		console.log('setting search results: ', action.payload.data);
+		return action.payload.data;
 	}
 	return state;
 };
@@ -40,7 +40,7 @@ function* rootSaga() {
 function* fetchFavorites(action) {
 	try {
 		const favorites = yield axios.get('/api/favorite');
-		yield put({ type: 'SET_FAVORITES', payload: favorites.data });
+		yield put({ type: 'SET_FAVORITES', payload: favorites.data.url });
 	} catch (err) {
 		console.log('could not fetch favorites', err);
 	}

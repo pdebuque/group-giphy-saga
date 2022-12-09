@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import '../SearchView/Search.css';
 
 export default function SearchView() {
 	const dispatch = useDispatch();
@@ -7,12 +9,11 @@ export default function SearchView() {
 
 	const searchResults = useSelector(store => store.searchResults);
 
-	console.log('Testing Testing');
-
 	const handleChange = e => {
 		e.preventDefault();
-		console.log('In search input field');
+		// console.log('In search input field');
 		setSearch(e.target.value);
+		// console.log('searchResult: ', searchResults);
 	};
 
 	const handleSubmit = () => {
@@ -25,21 +26,30 @@ export default function SearchView() {
 
 	return (
 		<div>
-			<input
-				type='text'
-				name='name'
-				value={searchTerm}
-				placeholder='Search'
-				required
-				onChange={handleChange}></input>
-
-			<button onClick={handleSubmit}>Search</button>
-
+			<div className='search-field'>
+				<input
+					type='text'
+					name='name'
+					value={searchTerm}
+					placeholder='Search'
+					required
+					onChange={handleChange}></input>
+				<button id='search-btn' onClick={handleSubmit}>
+					Search
+				</button>
+			</div>
+			<h3> Results</h3>
 			<div>
-				<h3> Results</h3>
-				<div>
+				<div className='flex-container'>
 					{searchResults.map(image => {
-						<img key={image.id} src={image.data} />;
+						return (
+							<div key={image.id} className='gif-container'>
+								<img src={image.images.downsized_large.url} />
+								<div>
+									<button className='favorite-btn'>Favorite</button>
+								</div>
+							</div>
+						);
 					})}
 				</div>
 			</div>
