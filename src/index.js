@@ -25,8 +25,8 @@ const favoritesList = (state = [], action) => {
 
 const searchResults = (state = [], action) => {
 	if (action.type === 'SET_SEARCH_RESULTS') {
-		console.log('setting search results: ', action.payload);
-		return action.payload;
+		console.log('setting search results: ', action.payload.data);
+		return action.payload.data;
 	}
 	return state;
 };
