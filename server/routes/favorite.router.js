@@ -25,6 +25,7 @@ router.post('/', (req, res) => {
 
 // update given favorite with a category id
 router.put('/:id', (req, res) => {
+	console.log(req.body);
 	const queryText = `UPDATE favorites SET category_id=$1
                         WHERE id = $2`;
 	pool

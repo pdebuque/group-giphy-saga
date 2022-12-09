@@ -35,6 +35,7 @@ function* rootSaga() {
 	yield takeEvery('FETCH_FAVORITES', fetchFavorites);
 	yield takeEvery('MAKE_SEARCH', makeSearch);
 	yield takeEvery('ADD_TO_FAVORITES', addToFavorites);
+	yield takeEvery('ADD_CATEGORY', addCategory)
 }
 
 // GET request: get all favorite gifs from the database
@@ -67,6 +68,21 @@ function* addToFavorites(action) {
 	} catch (err) {
 		console.log('could not add to favorites', err);
 	}
+}
+
+function* addCategory(action) {
+	// payload contains the favorite id and the category id to add.
+	// put request
+	try {
+		console.log('adding category with id: ', action.payload.category_id)
+		yield axios.put(`/api/favorites/${action.payload.id}`, {category_id: Number(action.payload.category_id)});
+		console.log('added category id')
+		yield put({type: 'FETCH_FAVORITES'})
+	}
+	catch(err) {
+		console.log('could not add category', err)
+	}
+
 }
 
 const sagaMiddleware = createSagaMiddleware();
