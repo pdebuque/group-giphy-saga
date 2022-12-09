@@ -26,17 +26,20 @@ export default function SearchView() {
 
 	return (
 		<div>
-			<input
-				type='text'
-				name='name'
-				value={searchTerm}
-				placeholder='Search'
-				required
-				onChange={handleChange}></input>
-			<button onClick={handleSubmit}>Search</button>
-
+			<div className='search-field'>
+				<input
+					type='text'
+					name='name'
+					value={searchTerm}
+					placeholder='Search'
+					required
+					onChange={handleChange}></input>
+				<button id='search-btn' onClick={handleSubmit}>
+					Search
+				</button>
+			</div>
+			<h3> Results</h3>
 			<div>
-				<h3> Results</h3>
 				<div className='flex-container'>
 					{searchResults.map(image => {
 						return (
