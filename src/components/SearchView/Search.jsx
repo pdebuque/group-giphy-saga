@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import '../SearchView/Search.css';
+import SearchResult from '../SearchResult/SearchResult';
 
 export default function SearchView() {
 	const dispatch = useDispatch();
@@ -41,15 +42,8 @@ export default function SearchView() {
 			<h3> Results</h3>
 			<div>
 				<div className='flex-container'>
-					{searchResults.map(image => {
-						return (
-							<div key={image.id} className='gif-container'>
-								<img src={image.images.downsized_large.url} />
-								<div>
-									<button className='favorite-btn'>Favorite</button>
-								</div>
-							</div>
-						);
+					{searchResults.map(result => {
+						return <SearchResult key={result.id} result={result} />;
 					})}
 				</div>
 			</div>

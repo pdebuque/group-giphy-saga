@@ -34,11 +34,12 @@ const searchResults = (state = [], action) => {
 function* rootSaga() {
 	yield takeEvery('FETCH_FAVORITES', fetchFavorites);
 	yield takeEvery('MAKE_SEARCH', makeSearch);
+	yield takeEvery('ADD_TO_FAVORITES', addToFavorites);
 }
 
 // GET request: get all favorite gifs from the database
 function* fetchFavorites(action) {
-    console.log('in fetchFavorite');
+	console.log('in fetchFavorite');
 	try {
 		const favorites = yield axios.get('/api/favorites');
 		yield put({ type: 'SET_FAVORITES', payload: favorites.data });
@@ -54,6 +55,17 @@ function* makeSearch(action) {
 		yield put({ type: 'SET_SEARCH_RESULTS', payload: searchResults.data });
 	} catch (err) {
 		console.log('could not search', err);
+	}
+}
+
+function* addToFavorites(action) {
+	try {
+		console.log('adding to favorites. url: ', action.payload);
+		yield axios.post('/api/favorites', action.payload);
+		console.log('added to favorites');
+		yield put({ type: 'FETCH_FAVORITES' });
+	} catch (err) {
+		console.log('could not add to favorites', err);
 	}
 }
 
