@@ -6,8 +6,7 @@ export default function SearchView() {
 	const [searchTerm, setSearch] = useState('');
 
 	const searchResults = useSelector(store => store.searchResults);
-
-	console.log('Testing Testing');
+	console.log('searchResult: ', searchResults);
 
 	const handleChange = e => {
 		e.preventDefault();
@@ -32,14 +31,18 @@ export default function SearchView() {
 				placeholder='Search'
 				required
 				onChange={handleChange}></input>
-
 			<button onClick={handleSubmit}>Search</button>
 
 			<div>
 				<h3> Results</h3>
 				<div>
 					{searchResults.map(image => {
-						<img key={image.id} src={image.data} />;
+						return (
+							<div>
+								<img key={image.id} src={image.images.downsized_large.url} />
+								<button>Favorite</button>
+							</div>
+						);
 					})}
 				</div>
 			</div>
