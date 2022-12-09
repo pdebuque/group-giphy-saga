@@ -38,9 +38,10 @@ function* rootSaga() {
 
 // GET request: get all favorite gifs from the database
 function* fetchFavorites(action) {
+    console.log('in fetchFavorite');
 	try {
-		const favorites = yield axios.get('/api/favorite');
-		yield put({ type: 'SET_FAVORITES', payload: favorites.data.url });
+		const favorites = yield axios.get('/api/favorites');
+		yield put({ type: 'SET_FAVORITES', payload: favorites.data });
 	} catch (err) {
 		console.log('could not fetch favorites', err);
 	}
