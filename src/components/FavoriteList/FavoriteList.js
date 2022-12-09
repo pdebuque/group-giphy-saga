@@ -1,9 +1,11 @@
 
 import React from "react";
 import FavoriteItem from "../FavoriteItem/FavoriteItem";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";  //!combine all imports at the end
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import '../FavoriteList/FavoriteList.css';
+
+
 
 function FavoriteList () {
 
@@ -22,16 +24,12 @@ function FavoriteList () {
     }
 
 
-
-
-
-
     return (
         <div>
-            <h3>This is the favorite list for giphys!</h3>
-            <h4>{JSON.stringify(favorites)}</h4>
+            <h3>M'favorite giphys!</h3>
+            {/* <h4>{JSON.stringify(favorites)}</h4> */}
             <>
-            <ul className="favoriteUL">
+            <ul className='flex-container'>
                 {favorites.map(favorite => (
                 <li>
                     <FavoriteItem key={favorite.id} favorite={favorite}/>
