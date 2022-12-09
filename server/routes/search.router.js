@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 require('dotenv').config();
 const axios = require('axios');
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 
 router.get('/:keyword', (req, res) => {
 	const searchTerm = req.params.keyword;

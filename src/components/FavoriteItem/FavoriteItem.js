@@ -18,7 +18,8 @@ function FavoriteItem (props){
 
     return (
         <div>
-            <p>{favorite}</p>
+            <p>{favorite.name}</p>
+            <p>{favorite.url}</p>
             <button key={favorite.id} onClick={removeFavorite}>Remove</button>
         </div>
     )

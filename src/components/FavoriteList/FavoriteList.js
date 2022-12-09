@@ -29,6 +29,7 @@ function FavoriteList () {
     return (
         <div>
             <h3>This is the favorite list for giphys!</h3>
+            <h4>{JSON.stringify(favorites)}</h4>
             <>
             <ul className="favoriteUL">
                 {favorites.map(favorite => (
