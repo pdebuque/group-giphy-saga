@@ -38,8 +38,8 @@ export default function SearchView() {
 				<div>
 					{searchResults.map(image => {
 						return (
-							<div>
-								<img key={image.id} src={image.images.downsized_large.url} />
+							<div key={image.id}>
+								<img src={image.images.downsized_large.url} />
 								<button>Favorite</button>
 							</div>
 						);
